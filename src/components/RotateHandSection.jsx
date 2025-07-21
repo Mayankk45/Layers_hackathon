@@ -32,7 +32,10 @@ const RotateHandSection = () => {
         >
             <div className="rotateHand_bg">
                 <div className="rotateHand_img">
-                    <img src="./watchRotateHand.jpg" alt="" />
+                    <img
+                        src="./watchHandSectionImg/watchRotateHand.jpg"
+                        alt=""
+                    />
 
                     <div className="circle">
                         <div
@@ -41,7 +44,10 @@ const RotateHandSection = () => {
                                 transform: `translate(-50%, -50%) rotate(${angle}deg)`,
                             }}
                         >
-                            <img src="./watchArrow.png" alt="Arrow" />
+                            <img
+                                src="./watchHandSectionImg/watchArrow.png"
+                                alt="Arrow"
+                            />
                         </div>
                     </div>
                 </div>

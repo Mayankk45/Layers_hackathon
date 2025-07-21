@@ -77,7 +77,12 @@ const HeadingSection = () => {
             </div>
 
             <div className="heading_section_right">
-                <video autoPlay loop muted src="./watchVideo.mp4"></video>
+                <video
+                    autoPlay
+                    loop
+                    muted
+                    src="./headingSectionContent/watchVideo.mp4"
+                ></video>
             </div>
         </div>
     );

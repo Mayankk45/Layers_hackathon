@@ -3,7 +3,10 @@ import { useRef } from "react";
 import * as THREE from "three";
 
 const RotatingCylinder = () => {
-    const texture = useLoader(THREE.TextureLoader, "/watch-strip.png"); // Make sure it's in public/
+    const texture = useLoader(
+        THREE.TextureLoader,
+        "./modelSectionImages/watch-strip.png"
+    ); // Make sure it's in public/
     const meshRef = useRef();
 
     return (

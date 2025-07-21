@@ -194,7 +194,7 @@ body {
 
     .left_view {
         width: 35%;
-        padding: 5rem 3rem;
+        padding: 5rem 0.5rem;
         color: white;
         display: flex;
         flex-direction: column;
@@ -202,13 +202,32 @@ body {
         background: #111;
         box-shadow: 4px 0 20px rgba(0, 0, 0, 0.3);
 
-        h1 {
-            font-size: 3.5rem;
-            font-weight: 700;
-            letter-spacing: 3px;
-            margin-bottom: 1rem;
-            color: #ffffff;
-            text-transform: uppercase;
+        .left_heading {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 8rem;
+            display: flex;
+            gap: 0.4rem;
+
+            .banner {
+                height: 100%;
+
+                img {
+                    height: 100%;
+                    width: 100%;
+                    object-fit: cover;
+                    border-radius: 20px;
+                }
+            }
+            h1 {
+                font-size: 4rem;
+                font-weight: 700;
+                letter-spacing: 3px;
+                margin-bottom: 1rem;
+                color: #ffffff;
+                text-transform: uppercase;
+            }
         }
 
         p {
@@ -225,7 +244,7 @@ body {
         display: flex;
         align-items: center;
         justify-content: center;
-        background-image: url("./modelBg.jpg");
+        background-image: url("./modelSectionImages/modelBg.jpg");
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;

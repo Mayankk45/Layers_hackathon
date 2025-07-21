@@ -4,18 +4,25 @@ import RotatingCylinder from "./RotatingCylinder";
 import { Suspense } from "react";
 import * as THREE from "three";
 import { EffectComposer, Bloom } from "@react-three/postprocessing";
+import { motion } from "framer-motion";
 
 const ModelSection = () => {
     return (
         <div data-scroll data-scroll-speed="-.4" className="model_section">
-            <div
-                className="left_view"
-                style={{ flex: 1, padding: "2rem", color: "#fff" }}
-            >
-                <h1 style={{ fontSize: "3rem" }}>LAYERS</h1>
-                <p style={{ fontSize: "1.2rem" }}>
-                    powerful. accurate. unique.
-                </p>
+            <div className="left_view">
+                <div className="left_heading">
+                    <div className="banner">
+                        <motion.img
+                            initial={{ width: 0 }}
+                            animate={{ width: 220 }}
+                            transition={{ duration: 1.2 }}
+                            src="./modelSectionImages/img.jpg"
+                            alt=""
+                        />
+                    </div>
+                    <h1>LAYERS</h1>
+                </div>
+                <p>powerful. accurate. unique.</p>
             </div>
 
             <div className="right_view" style={{ flex: 2 }}>
@@ -28,10 +35,8 @@ const ModelSection = () => {
                         outputEncoding: THREE.sRGBEncoding,
                     }}
                 >
-                    {/* Ambient light (soft fill) */}
                     <ambientLight intensity={1} color="#ffffff" />
 
-                    {/* Super-bright main directional light (from top-right) */}
                     <directionalLight
                         position={[0, 0, 9]}
                         intensity={3}
@@ -39,14 +44,14 @@ const ModelSection = () => {
                         castShadow
                     />
 
-                    {/* Warm left-front fill light */}
+                    {/* left-front light*/}
                     <directionalLight
                         position={[-4, 3, 5]}
                         intensity={3.5}
                         color={"#fff1d0"}
                     />
 
-                    {/* Gold-orange rim light (back side for edge glow) */}
+                    {/* goldish light effect*/}
                     <pointLight
                         position={[2, 2, -4]}
                         intensity={2.8}
@@ -65,7 +70,7 @@ const ModelSection = () => {
                     <Suspense fallback={null}>
                         <RotatingCylinder />
 
-                        {/* ✨ Bloom Glow */}
+                        {/* Bloom Glow */}
                         <EffectComposer>
                             <Bloom
                                 intensity={3.5}
@@ -76,7 +81,7 @@ const ModelSection = () => {
                         </EffectComposer>
                     </Suspense>
 
-                    {/* Orbit + Auto Rotate */}
+                    {/* Auto Rotate */}
                     <OrbitControls
                         enableDamping
                         dampingFactor={0.1}

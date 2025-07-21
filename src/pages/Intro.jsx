@@ -17,7 +17,13 @@ const Intro = ({ onFinish }) => {
             exit={{ opacity: 0 }}
         >
             <div className="intro_video">
-                <video src="./watch.mp4" autoPlay muted loop playsInline />
+                <video
+                    src="./intro/watch.mp4"
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                />
             </div>
             {/* Heading */}
             <motion.h1
