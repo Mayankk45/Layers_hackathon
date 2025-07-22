@@ -1,18 +1,28 @@
-import React from "react";
+import { useEffect } from "react";
 
-const MarqueeSection = () => {
+const MarqueeSection = ({ isLargeScreen, setIsLargeScreen }) => {
+    useEffect(() => {
+        const checkScreenSize = () => {
+            setIsLargeScreen(window.innerWidth > 768);
+        };
+
+        checkScreenSize();
+    }, []);
+
     return (
         <div className="marquee_wrapper">
             <div
-                data-scroll
-                data-scroll-section
-                data-scroll-speed="-.10"
                 className="marquee_section"
+                {...(isLargeScreen && {
+                    "data-scroll": true,
+                    "data-scroll-section": true,
+                    "data-scroll-speed": "-.10",
+                })}
             >
                 <hr />
                 <div className="text">
-                    <div className="p">Precission in motion</div>
-                    <div className="p">Precission in motion</div>
+                    <div className="p">Precision in motion</div>
+                    <div className="p">Precision in motion</div>
                 </div>
                 <hr />
             </div>

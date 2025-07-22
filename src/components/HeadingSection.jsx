@@ -1,7 +1,14 @@
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-const HeadingSection = () => {
+const HeadingSection = ({ isLargeScreen, setIsLargeScreen }) => {
+    useEffect(() => {
+        const checkScreenSize = () => {
+            setIsLargeScreen(window.innerWidth > 768);
+        };
+
+        checkScreenSize();
+    }, []);
     const [hoveredIndex, setHoveredIndex] = useState(null);
     const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 
@@ -27,9 +34,11 @@ const HeadingSection = () => {
 
     return (
         <div
-            data-scroll
-            data-scroll-section
-            data-scroll-speed="-.02"
+            {...(isLargeScreen && {
+                "data-scroll": true,
+                "data-scroll-section": true,
+                "data-scroll-speed": "-.02",
+            })}
             className="heading_section"
         >
             <div className="heading_section_left" onMouseMove={handleMouseMove}>
@@ -81,7 +90,7 @@ const HeadingSection = () => {
                     autoPlay
                     loop
                     muted
-                    src="./headingSectionContent/watchVideo.mp4"
+                    src="./headingSectionAsset/watchVideo.mp4"
                 ></video>
             </div>
         </div>

@@ -5,24 +5,92 @@ import { Suspense } from "react";
 import * as THREE from "three";
 import { EffectComposer, Bloom } from "@react-three/postprocessing";
 import { motion } from "framer-motion";
+import { useEffect } from "react";
 
-const ModelSection = () => {
+const ModelSection = ({ isLargeScreen, setIsLargeScreen }) => {
+    useEffect(() => {
+        const checkScreenSize = () => {
+            setIsLargeScreen(window.innerWidth > 768);
+        };
+
+        checkScreenSize();
+    }, []);
     return (
-        <div data-scroll data-scroll-speed="-.4" className="model_section">
+        <div
+            {...(isLargeScreen && {
+                "data-scroll": true,
+                "data-scroll-section": true,
+                "data-scroll-speed": "-.4",
+            })}
+            className="model_section"
+        >
             <div className="left_view">
-                <div className="left_heading">
-                    <div className="banner">
-                        <motion.img
-                            initial={{ width: 0 }}
-                            animate={{ width: 220 }}
-                            transition={{ duration: 1.2 }}
-                            src="./modelSectionImages/img.jpg"
-                            alt=""
-                        />
-                    </div>
-                    <h1>LAYERS</h1>
-                </div>
-                <p>powerful. accurate. unique.</p>
+                <motion.h1
+                    initial={{ y: 20, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    transition={{ duration: 1 }}
+                >
+                    LAYERS
+                </motion.h1>
+
+                <motion.div
+                    className="imgContainer"
+                    initial={{ width: 300, height: 0 }}
+                    animate={{ width: 300, height: 400 }}
+                    transition={{
+                        duration: 1,
+                        delay: 4,
+                        ease: "easeOut",
+                        type: "spring",
+                        stiffness: 60,
+                    }}
+                >
+                    <img src="./modelSectionAsset/ANARC.png" alt="" />
+                </motion.div>
+
+                <p>
+                    <motion.span
+                        initial={{ y: 30, opacity: 0, scale: 0.95 }}
+                        animate={{ y: 0, opacity: 1, scale: 1 }}
+                        transition={{
+                            duration: 1,
+                            delay: 1.4,
+                            ease: "easeOut",
+                            type: "spring",
+                            stiffness: 60,
+                        }}
+                    >
+                        powerful.{" "}
+                    </motion.span>
+
+                    <motion.span
+                        initial={{ y: 30, opacity: 0, scale: 0.95 }}
+                        animate={{ y: 0, opacity: 1, scale: 1 }}
+                        transition={{
+                            duration: 1,
+                            delay: 2.3,
+                            ease: "easeOut",
+                            type: "spring",
+                            stiffness: 60,
+                        }}
+                    >
+                        accurate.{" "}
+                    </motion.span>
+
+                    <motion.span
+                        initial={{ y: 30, opacity: 0, scale: 0.95 }}
+                        animate={{ y: 0, opacity: 1, scale: 1 }}
+                        transition={{
+                            duration: 1,
+                            delay: 3,
+                            ease: "easeOut",
+                            type: "spring",
+                            stiffness: 60,
+                        }}
+                    >
+                        unique.
+                    </motion.span>
+                </p>
             </div>
 
             <div className="right_view" style={{ flex: 2 }}>

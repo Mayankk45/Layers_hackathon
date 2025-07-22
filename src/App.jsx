@@ -8,6 +8,8 @@ const App = () => {
 
     const [showIntro, setShowIntro] = useState(true);
 
+    const [isLargeScreen, setIsLargeScreen] = useState(true);
+
     return (
         <>
             {/* {showIntro ? (

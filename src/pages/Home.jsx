@@ -1,23 +1,58 @@
-import ModelSection from "../components/ModelSection";
-import Navbar from "../components/Navbar";
-import RotateHandSection from "../components/RotateHandSection";
-import ImagesFloatSection from "./../components/ImagesFloatSection";
-import MarqueeSection from "./../components/MarqueeSection";
-import HeadingSection from "./../components/HeadingSection";
-import ImageRollSection from "./../components/ImageRollSection";
-import Footer from "../components/Footer";
+import { useEffect, useState, lazy, Suspense } from "react";
+const Navbar = lazy(() => import("../components/Navbar"));
+const ModelSection = lazy(() => import("../components/ModelSection"));
+const MarqueeSection = lazy(() => import("../components/MarqueeSection"));
+const ImagesFloatSection = lazy(() =>
+    import("../components/ImagesFloatSection")
+);
+const RotateHandSection = lazy(() => import("../components/RotateHandSection"));
+const HeadingSection = lazy(() => import("../components/HeadingSection"));
+const ImageRollSection = lazy(() => import("../components/ImageRollSection"));
+const Footer = lazy(() => import("../components/Footer"));
 
 const Home = () => {
+    const [isLargeScreen, setIsLargeScreen] = useState(true);
+
+    useEffect(() => {
+        const checkScreenSize = () => {
+            setIsLargeScreen(window.innerWidth > 768);
+        };
+        checkScreenSize();
+        window.addEventListener("resize", checkScreenSize);
+        return () => window.removeEventListener("resize", checkScreenSize);
+    }, []);
+
     return (
         <>
             <Navbar />
-            <ModelSection />
-            <MarqueeSection />
-            <ImagesFloatSection />
-            <RotateHandSection />
-            <HeadingSection />
-            <ImageRollSection />
-            <Footer />
+            <ModelSection
+                isLargeScreen={isLargeScreen}
+                setIsLargeScreen={setIsLargeScreen}
+            />
+            <MarqueeSection
+                isLargeScreen={isLargeScreen}
+                setIsLargeScreen={setIsLargeScreen}
+            />
+            <ImagesFloatSection
+                isLargeScreen={isLargeScreen}
+                setIsLargeScreen={setIsLargeScreen}
+            />
+            <RotateHandSection
+                isLargeScreen={isLargeScreen}
+                setIsLargeScreen={setIsLargeScreen}
+            />
+            <HeadingSection
+                isLargeScreen={isLargeScreen}
+                setIsLargeScreen={setIsLargeScreen}
+            />
+            <ImageRollSection
+                isLargeScreen={isLargeScreen}
+                setIsLargeScreen={setIsLargeScreen}
+            />
+            <Footer
+                isLargeScreen={isLargeScreen}
+                setIsLargeScreen={setIsLargeScreen}
+            />
         </>
     );
 };

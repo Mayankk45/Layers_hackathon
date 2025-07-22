@@ -1,7 +1,15 @@
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
-const RotateHandSection = () => {
+const RotateHandSection = ({ isLargeScreen, setIsLargeScreen }) => {
+    useEffect(() => {
+        const checkScreenSize = () => {
+            setIsLargeScreen(window.innerWidth > 768);
+        };
+
+        checkScreenSize();
+    }, []);
+
     const [angle, setAngle] = useState(0);
 
     useEffect(() => {
@@ -25,15 +33,17 @@ const RotateHandSection = () => {
 
     return (
         <div
-            data-scroll
-            data-scroll-section
-            data-scroll-speed="-.7"
+            {...(isLargeScreen && {
+                "data-scroll": true,
+                "data-scroll-section": true,
+                "data-scroll-speed": "-.7",
+            })}
             className="rotateHand_Section"
         >
             <div className="rotateHand_bg">
                 <div className="rotateHand_img">
                     <img
-                        src="./watchHandSectionImg/watchRotateHand.jpg"
+                        src="./watchHandSectionAsset/watchRotateHand.jpg"
                         alt=""
                     />
 
@@ -45,7 +55,7 @@ const RotateHandSection = () => {
                             }}
                         >
                             <img
-                                src="./watchHandSectionImg/watchArrow.png"
+                                src="./watchHandSectionAsset/watchArrow.png"
                                 alt="Arrow"
                             />
                         </div>

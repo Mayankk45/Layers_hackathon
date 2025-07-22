@@ -5,7 +5,7 @@ import * as THREE from "three";
 const RotatingCylinder = () => {
     const texture = useLoader(
         THREE.TextureLoader,
-        "./modelSectionImages/watch-strip.png"
+        "./modelSectionAsset/watch-strip.png"
     ); // Make sure it's in public/
     const meshRef = useRef();
 

@@ -1,34 +1,42 @@
 import React from "react";
 import { motion } from "framer-motion";
+import { useEffect } from "react";
 
 const watchContent = [
     {
-        image: "./ImageRollSectionImg/watchPoster1.jpg",
+        image: "./ImageRollSectionAsset/watchPoster1.jpg",
         title: "Precision in Motion",
         description:
             "Experience cutting-edge engineering with every tick. Designed for accuracy and performance.",
     },
     {
-        image: "./ImageRollSectionImg/watchPoster2.jpg",
+        image: "./ImageRollSectionAsset/watchPoster2.jpg",
         title: "Bold & Timeless",
         description:
             "A perfect fusion of tradition and modernity — crafted for those who value elegance.",
     },
     {
-        image: "./ImageRollSectionImg/watchPoster3.jpg",
+        image: "./ImageRollSectionAsset/watchPoster3.jpg",
         title: "Uncompromising Style",
         description:
             "Make a statement with a timepiece that reflects your personality and ambition.",
     },
     {
-        image: "./ImageRollSectionImg/watchPoster4.jpg",
+        image: "./ImageRollSectionAsset/watchPoster4.jpg",
         title: "Built for Adventure",
         description:
             "Rugged design meets high-functionality. For those who push boundaries and never stop exploring.",
     },
 ];
 
-const ImageRollSection = () => {
+const ImageRollSection = ({ setIsLargeScreen }) => {
+    useEffect(() => {
+        const checkScreenSize = () => {
+            setIsLargeScreen(window.innerWidth > 768);
+        };
+
+        checkScreenSize();
+    }, []);
     return (
         <div className="imageRoll_section">
             {watchContent.map((content, index) => (
