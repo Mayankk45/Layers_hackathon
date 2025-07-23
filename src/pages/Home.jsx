@@ -11,48 +11,16 @@ const ImageRollSection = lazy(() => import("../components/ImageRollSection"));
 const Footer = lazy(() => import("../components/Footer"));
 
 const Home = () => {
-    const [isLargeScreen, setIsLargeScreen] = useState(true);
-
-    useEffect(() => {
-        const checkScreenSize = () => {
-            setIsLargeScreen(window.innerWidth > 768);
-        };
-        checkScreenSize();
-        window.addEventListener("resize", checkScreenSize);
-        return () => window.removeEventListener("resize", checkScreenSize);
-    }, []);
-
     return (
         <>
             <Navbar />
-            <ModelSection
-                isLargeScreen={isLargeScreen}
-                setIsLargeScreen={setIsLargeScreen}
-            />
-            <MarqueeSection
-                isLargeScreen={isLargeScreen}
-                setIsLargeScreen={setIsLargeScreen}
-            />
-            <ImagesFloatSection
-                isLargeScreen={isLargeScreen}
-                setIsLargeScreen={setIsLargeScreen}
-            />
-            <RotateHandSection
-                isLargeScreen={isLargeScreen}
-                setIsLargeScreen={setIsLargeScreen}
-            />
-            <HeadingSection
-                isLargeScreen={isLargeScreen}
-                setIsLargeScreen={setIsLargeScreen}
-            />
-            <ImageRollSection
-                isLargeScreen={isLargeScreen}
-                setIsLargeScreen={setIsLargeScreen}
-            />
-            <Footer
-                isLargeScreen={isLargeScreen}
-                setIsLargeScreen={setIsLargeScreen}
-            />
+            <ModelSection />
+            <MarqueeSection />
+            <ImagesFloatSection />
+            <RotateHandSection />
+            <HeadingSection />
+            <ImageRollSection />
+            <Footer />
         </>
     );
 };

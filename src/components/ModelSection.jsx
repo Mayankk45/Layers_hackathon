@@ -5,30 +5,20 @@ import { Suspense } from "react";
 import * as THREE from "three";
 import { EffectComposer, Bloom } from "@react-three/postprocessing";
 import { motion } from "framer-motion";
-import { useEffect } from "react";
 
-const ModelSection = ({ isLargeScreen, setIsLargeScreen }) => {
-    useEffect(() => {
-        const checkScreenSize = () => {
-            setIsLargeScreen(window.innerWidth > 768);
-        };
-
-        checkScreenSize();
-    }, []);
+const ModelSection = () => {
     return (
         <div
-            {...(isLargeScreen && {
-                "data-scroll": true,
-                "data-scroll-section": true,
-                "data-scroll-speed": "-.4",
-            })}
+            data-scroll
+            data-scroll-section
+            data-scroll-speed="-.5"
             className="model_section"
         >
             <div className="left_view">
                 <motion.h1
                     initial={{ y: 20, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
-                    transition={{ duration: 1 }}
+                    transition={{ duration: 1, delay: 1.1 }}
                 >
                     LAYERS
                 </motion.h1>
@@ -38,7 +28,7 @@ const ModelSection = ({ isLargeScreen, setIsLargeScreen }) => {
                     initial={{ width: 300, height: 0 }}
                     animate={{ width: 300, height: 400 }}
                     transition={{
-                        duration: 1,
+                        duration: 1.2,
                         delay: 4,
                         ease: "easeOut",
                         type: "spring",
@@ -53,8 +43,8 @@ const ModelSection = ({ isLargeScreen, setIsLargeScreen }) => {
                         initial={{ y: 30, opacity: 0, scale: 0.95 }}
                         animate={{ y: 0, opacity: 1, scale: 1 }}
                         transition={{
-                            duration: 1,
-                            delay: 1.4,
+                            duration: 1.2,
+                            delay: 1.9,
                             ease: "easeOut",
                             type: "spring",
                             stiffness: 60,
@@ -67,8 +57,8 @@ const ModelSection = ({ isLargeScreen, setIsLargeScreen }) => {
                         initial={{ y: 30, opacity: 0, scale: 0.95 }}
                         animate={{ y: 0, opacity: 1, scale: 1 }}
                         transition={{
-                            duration: 1,
-                            delay: 2.3,
+                            duration: 1.2,
+                            delay: 2.6,
                             ease: "easeOut",
                             type: "spring",
                             stiffness: 60,
@@ -81,8 +71,8 @@ const ModelSection = ({ isLargeScreen, setIsLargeScreen }) => {
                         initial={{ y: 30, opacity: 0, scale: 0.95 }}
                         animate={{ y: 0, opacity: 1, scale: 1 }}
                         transition={{
-                            duration: 1,
-                            delay: 3,
+                            duration: 1.2,
+                            delay: 3.3,
                             ease: "easeOut",
                             type: "spring",
                             stiffness: 60,
@@ -158,6 +148,8 @@ const ModelSection = ({ isLargeScreen, setIsLargeScreen }) => {
                         enableZoom={true}
                         maxPolarAngle={Math.PI / 2}
                         minPolarAngle={0}
+                        maxDistance={7}
+                        minDistance={3}
                     />
                 </Canvas>
             </div>

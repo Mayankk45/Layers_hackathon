@@ -1,14 +1,7 @@
 import { motion } from "framer-motion";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
-const HeadingSection = ({ isLargeScreen, setIsLargeScreen }) => {
-    useEffect(() => {
-        const checkScreenSize = () => {
-            setIsLargeScreen(window.innerWidth > 768);
-        };
-
-        checkScreenSize();
-    }, []);
+const HeadingSection = () => {
     const [hoveredIndex, setHoveredIndex] = useState(null);
     const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 
@@ -34,11 +27,9 @@ const HeadingSection = ({ isLargeScreen, setIsLargeScreen }) => {
 
     return (
         <div
-            {...(isLargeScreen && {
-                "data-scroll": true,
-                "data-scroll-section": true,
-                "data-scroll-speed": "-.02",
-            })}
+            data-scroll
+            data-scroll-section
+            data-scroll-speed="-.02"
             className="heading_section"
         >
             <div className="heading_section_left" onMouseMove={handleMouseMove}>

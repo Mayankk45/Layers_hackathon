@@ -1,9 +1,11 @@
-import { useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
-import Navbar from "./Navbar";
 
-const Products = () => {
+const Cart = () => {
     const navigate = useNavigate();
+    const { idx } = useParams();
+    const [cartItems, setCartItems] = useState([]);
 
     const products = [
         {
@@ -188,56 +190,134 @@ const Products = () => {
         },
     ];
 
-    const handleAddCart = (id) => {
-        const storedUser = JSON.parse(localStorage.getItem("user"));
-        if (!storedUser) {
-            toast.warning("Login to access the resource");
+    useEffect(() => {
+        if (!idx) return;
+
+        const product = products.find((p) => p.id === idx);
+        if (!product) {
+            toast.error("Product not found");
             return;
-        } else {
-            navigate(`/cart/${id}`);
         }
+
+        setCartItems((prev) => {
+            const exists = prev.find((item) => item.id === idx);
+            if (exists) {
+                toast.info("Quantity updated");
+                return prev.map((item) =>
+                    item.id === idx
+                        ? { ...item, quantity: item.quantity + 1 }
+                        : item
+                );
+            } else {
+                toast.success("Item added to cart");
+                return [...prev, { ...product, quantity: 1 }];
+            }
+        });
+    }, [idx]);
+
+    const handleRemove = (id) => {
+        setCartItems((prev) => prev.filter((item) => item.id !== id));
+        toast.info("Item removed");
+    };
+
+    const handleQuantity = (id, type) => {
+        setCartItems((prev) =>
+            prev.map((item) =>
+                item.id === id
+                    ? {
+                          ...item,
+                          quantity:
+                              type === "inc"
+                                  ? item.quantity + 1
+                                  : Math.max(1, item.quantity - 1),
+                      }
+                    : item
+            )
+        );
+    };
+
+    const total = cartItems.reduce(
+        (acc, item) => acc + item.price * item.quantity,
+        0
+    );
+
+    const handleCheckout = () => {
+        toast.info("Under Maintenance");
     };
 
     return (
-        <>
-            <Navbar />
-            <div className="products_container">
-                <h1>Smartwatches by Layers </h1>
-                <div className="products_grid">
-                    {products.map((item, idx) => (
-                        <div className="product_card" key={item.id}>
-                            <img src={item.image} alt={item.title} />
-                            <h2>{item.title}</h2>
-                            <p className="meta">{item.brand}</p>
-                            <div className="model_color">
-                                <p className="meta">{item.model}</p>
-                                <p className="meta">{item.color}</p>
+        <div className="cart_container">
+            <button className="go_home" onClick={() => navigate("/")}>
+                Go to Home
+            </button>
+            <h1>🛒 Your Cart</h1>
+
+            {cartItems.length === 0 ? (
+                <div className="cart_empty">No items in the Cart</div>
+            ) : (
+                <div className="cart_wrapper">
+                    <div className="cart_list">
+                        {cartItems.map((item) => (
+                            <div key={item.id} className="cart_item">
+                                <img src={item.image} alt={item.title} />
+                                <div className="cart_info">
+                                    <div className="item_detail">
+                                        <h2>{item.title}</h2>
+                                        <p>{item.model}</p>
+                                        <p>{item.color}</p>
+                                        <p>₹{item.price.toLocaleString()}</p>
+                                    </div>
+                                    <div className="quantity_control">
+                                        <div className="qty_buttons">
+                                            <button
+                                                onClick={() =>
+                                                    handleQuantity(
+                                                        item.id,
+                                                        "dec"
+                                                    )
+                                                }
+                                            >
+                                                −
+                                            </button>
+                                            <span>{item.quantity}</span>
+                                            <button
+                                                onClick={() =>
+                                                    handleQuantity(
+                                                        item.id,
+                                                        "inc"
+                                                    )
+                                                }
+                                            >
+                                                +
+                                            </button>
+                                        </div>
+                                        <button
+                                            className="btn_remove"
+                                            onClick={() =>
+                                                handleRemove(item.id)
+                                            }
+                                        >
+                                            Remove
+                                        </button>
+                                    </div>
+                                </div>
                             </div>
-                            <p className="price">
-                                ₹{item.price.toLocaleString()}
-                            </p>
-                            <div className="card_bottom">
-                                <button
-                                    className="btn_primary"
-                                    onClick={() => handleAddCart(item.id)}
-                                >
-                                    Add to Cart
-                                </button>
-                                <button
-                                    className="btn_secondary"
-                                    onClick={() =>
-                                        navigate(`/productDetails/${idx}`)
-                                    }
-                                >
-                                    View Details
-                                </button>
-                            </div>
-                        </div>
-                    ))}
+                        ))}
+                    </div>
+
+                    <div className="cart_total">
+                        <h3>Total: ₹{total.toLocaleString()}</h3>
+                        <button
+                            className="btn_checkout"
+                            onClick={handleCheckout}
+                        >
+                            Checkout
+                        </button>
+                    </div>
                 </div>
-            </div>
-        </>
+            )}
+        </div>
     );
 };
 
-export default Products;
+export default Cart;

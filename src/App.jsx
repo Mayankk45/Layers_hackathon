@@ -2,21 +2,21 @@ import { useState } from "react";
 import Intro from "./pages/Intro";
 import Mainroutes from "./Mainroutes";
 import LocomotiveScroll from "locomotive-scroll";
+import { ToastContainer } from "react-toastify";
 
 const App = () => {
     const locomotiveScroll = new LocomotiveScroll();
 
     const [showIntro, setShowIntro] = useState(true);
 
-    const [isLargeScreen, setIsLargeScreen] = useState(true);
-
     return (
         <>
-            {/* {showIntro ? (
+            {showIntro ? (
                 <Intro onFinish={() => setShowIntro(false)} />
             ) : (
-            )} */}
-            <Mainroutes />
+                <Mainroutes />
+            )}
+            <ToastContainer position="top-center" autoClose={2000} />
         </>
     );
 };

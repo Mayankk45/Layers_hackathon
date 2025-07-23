@@ -1,8 +1,9 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import Navbar from "./Navbar";
 
-const Products = () => {
+const ProductDetails = () => {
+    const { idx } = useParams();
     const navigate = useNavigate();
 
     const products = [
@@ -188,56 +189,54 @@ const Products = () => {
         },
     ];
 
+    const product = products[idx];
+
     const handleAddCart = (id) => {
         const storedUser = JSON.parse(localStorage.getItem("user"));
-        if (!storedUser) {
+        if (storedUser == null) {
             toast.warning("Login to access the resource");
             return;
-        } else {
-            navigate(`/cart/${id}`);
         }
+        navigate(`/cart/${id}`);
     };
 
     return (
         <>
             <Navbar />
-            <div className="products_container">
-                <h1>Smartwatches by Layers </h1>
-                <div className="products_grid">
-                    {products.map((item, idx) => (
-                        <div className="product_card" key={item.id}>
-                            <img src={item.image} alt={item.title} />
-                            <h2>{item.title}</h2>
-                            <p className="meta">{item.brand}</p>
-                            <div className="model_color">
-                                <p className="meta">{item.model}</p>
-                                <p className="meta">{item.color}</p>
-                            </div>
-                            <p className="price">
-                                ₹{item.price.toLocaleString()}
+            <div className="product-detail">
+                <div className="container">
+                    <div className="product-wrapper">
+                        <div className="product-img">
+                            <img src={product.image} alt={product.title} />
+                        </div>
+
+                        <div className="product-info">
+                            <h2>{product.title}</h2>
+                            <p>
+                                <strong>Brand:</strong> {product.brand}
                             </p>
-                            <div className="card_bottom">
+                            <p>
+                                <strong>Model:</strong> {product.model}
+                            </p>
+                            <p>
+                                <strong>Color:</strong> {product.color}
+                            </p>
+                            <p className="description">{product.description}</p>
+                            <p className="price">₹{product.price}</p>
+
+                            <div className="productdetails_buttons">
                                 <button
-                                    className="btn_primary"
-                                    onClick={() => handleAddCart(item.id)}
+                                    onClick={() => handleAddCart(product.id)}
                                 >
                                     Add to Cart
                                 </button>
-                                <button
-                                    className="btn_secondary"
-                                    onClick={() =>
-                                        navigate(`/productDetails/${idx}`)
-                                    }
-                                >
-                                    View Details
-                                </button>
                             </div>
                         </div>
-                    ))}
+                    </div>
                 </div>
             </div>
         </>
     );
 };
 
-export default Products;
+export default ProductDetails;

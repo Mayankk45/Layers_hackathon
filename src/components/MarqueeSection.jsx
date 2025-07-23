@@ -1,23 +1,11 @@
-import { useEffect } from "react";
-
-const MarqueeSection = ({ isLargeScreen, setIsLargeScreen }) => {
-    useEffect(() => {
-        const checkScreenSize = () => {
-            setIsLargeScreen(window.innerWidth > 768);
-        };
-
-        checkScreenSize();
-    }, []);
-
+const MarqueeSection = () => {
     return (
         <div className="marquee_wrapper">
             <div
                 className="marquee_section"
-                {...(isLargeScreen && {
-                    "data-scroll": true,
-                    "data-scroll-section": true,
-                    "data-scroll-speed": "-.10",
-                })}
+                data-scroll
+                data-scroll-section
+                data-scroll-speed="-.10"
             >
                 <hr />
                 <div className="text">

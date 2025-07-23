@@ -1,6 +1,4 @@
-import React from "react";
 import { motion } from "framer-motion";
-import { useEffect } from "react";
 
 const watchContent = [
     {
@@ -29,14 +27,7 @@ const watchContent = [
     },
 ];
 
-const ImageRollSection = ({ setIsLargeScreen }) => {
-    useEffect(() => {
-        const checkScreenSize = () => {
-            setIsLargeScreen(window.innerWidth > 768);
-        };
-
-        checkScreenSize();
-    }, []);
+const ImageRollSection = () => {
     return (
         <div className="imageRoll_section">
             {watchContent.map((content, index) => (
