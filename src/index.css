@@ -96,6 +96,22 @@ body {
     opacity: 1;
   }
 }
+@media (max-width: 768px) {
+  .intro h1 {
+    font-size: 2.2rem;
+    letter-spacing: 1.5px;
+  }
+}
+@media (max-width: 480px) {
+  .intro h1 {
+    font-size: 1.6rem;
+    letter-spacing: 1px;
+  }
+  .intro .loader span {
+    width: 8px;
+    height: 8px;
+  }
+}
 
 .navbar {
   background: linear-gradient(to left, transparent, #1f1f1f, #0d0d0d);
@@ -188,6 +204,7 @@ body {
 }
 @media (max-width: 768px) {
   .navbar {
+    height: 60px;
     padding: 0 1rem;
   }
   .navbar .left {
@@ -197,43 +214,54 @@ body {
     font-size: 1.6rem;
   }
   .navbar .left a {
-    font-size: 0.9rem;
-    padding: 0.4rem 0.7rem;
+    font-size: 0.8rem;
+    padding: 0.3rem 0.6rem;
+    white-space: nowrap;
   }
   .navbar .right {
-    font-size: 1.6rem;
-  }
-}
-@media (max-width: 480px) {
-  .navbar {
-    flex-direction: column;
-    height: auto;
-    padding: 0.5rem 1rem;
-  }
-  .navbar .left {
-    flex-direction: column;
-    align-items: flex-start;
-    width: 100%;
-  }
-  .navbar .left p {
-    font-size: 1.4rem;
-    margin-bottom: 0.5rem;
-  }
-  .navbar .left a {
-    width: 100%;
-    text-align: left;
-    font-size: 0.85rem;
-    padding: 0.4rem 0;
-  }
-  .navbar .right {
-    align-self: flex-end;
-    margin-top: 0.5rem;
     font-size: 1.5rem;
   }
   .navbar .right .dropdown {
+    top: 2.2rem;
     right: 0;
+    font-size: 0.8rem;
+  }
+  .navbar .right .dropdown a {
+    padding: 0.3rem 0.5rem;
+  }
+}
+@media (max-width: 550px) {
+  .navbar {
+    flex-wrap: nowrap;
+    height: 55px;
+    padding: 0 0.6rem;
+  }
+  .navbar .left {
+    flex: 1;
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    gap: 0.4rem;
+  }
+  .navbar .left p {
+    font-size: 1.1rem;
+    flex-shrink: 0;
+  }
+  .navbar .left a {
+    font-size: 0.65rem;
+    padding: 0.2rem 0.4rem;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .navbar .right {
+    flex-shrink: 0;
+    font-size: 1.2rem;
+    margin-left: 0.5rem;
+  }
+  .navbar .right .dropdown {
     top: 2rem;
-    font-size: 0.85rem;
+    right: 0;
+    font-size: 0.75rem;
   }
 }
 
