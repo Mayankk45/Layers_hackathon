@@ -33,7 +33,7 @@ const RotateHandSection = () => {
             <div className="rotateHand_bg">
                 <div className="rotateHand_img">
                     <img
-                        src="./watchHandSectionAsset/watchRotateHand.jpg"
+                        src="/watchHandSectionAsset/watchRotateHand.jpg"
                         alt=""
                     />
 
@@ -45,7 +45,7 @@ const RotateHandSection = () => {
                             }}
                         >
                             <img
-                                src="./watchHandSectionAsset/watchArrow.png"
+                                src="/watchHandSectionAsset/watchArrow.png"
                                 alt="Arrow"
                             />
                         </div>

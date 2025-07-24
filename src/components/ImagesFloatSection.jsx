@@ -15,12 +15,12 @@ const ImagesFloatSection = () => {
     }, []);
 
     const positions = [
-        { x: -250, y: -180, src: "./floatSectionAsset/img1.jpg" },
-        { x: 500, y: 10, src: "./floatSectionAsset/img2.jpg" },
-        { x: -250, y: 180, src: "./floatSectionAsset/img3.jpg" },
-        { x: 250, y: 180, src: "./floatSectionAsset/img4.jpg" },
-        { x: -500, y: -10, src: "./floatSectionAsset/img5.jpg" },
-        { x: 250, y: -180, src: "./floatSectionAsset/img6.jpg" },
+        { x: -250, y: -180, src: "/floatSectionAsset/img1.jpg" },
+        { x: 500, y: 10, src: "/floatSectionAsset/img2.jpg" },
+        { x: -250, y: 180, src: "/floatSectionAsset/img3.jpg" },
+        { x: 250, y: 180, src: "/floatSectionAsset/img4.jpg" },
+        { x: -500, y: -10, src: "/floatSectionAsset/img5.jpg" },
+        { x: 250, y: -180, src: "/floatSectionAsset/img6.jpg" },
     ];
 
     const [audioEnabled, setAudioEnabled] = useState(false);

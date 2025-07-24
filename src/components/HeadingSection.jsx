@@ -81,7 +81,7 @@ const HeadingSection = () => {
                     autoPlay
                     loop
                     muted
-                    src="./headingSectionAsset/watchVideo.mp4"
+                    src="/headingSectionAsset/watchVideo.mp4"
                 ></video>
             </div>
         </div>

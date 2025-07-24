@@ -35,7 +35,7 @@ const ModelSection = () => {
                         stiffness: 60,
                     }}
                 >
-                    <img src="./modelSectionAsset/ANARC.png" alt="" />
+                    <img src="/modelSectionAsset/ANARC.png" alt="" />
                 </motion.div>
 
                 <p>
