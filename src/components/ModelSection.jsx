@@ -36,6 +36,17 @@ const ModelSection = () => {
                     }}
                 >
                     <img src="/modelSectionAsset/ANARC.png" alt="" />
+                    <motion.video
+                        muted
+                        loop
+                        playsInline
+                        src="/modelSectionAsset/watchHover.mp4"
+                        onMouseEnter={(e) => e.currentTarget.play()}
+                        onMouseLeave={(e) => {
+                            e.currentTarget.pause();
+                            e.currentTarget.currentTime = 0;
+                        }}
+                    />
                 </motion.div>
 
                 <p>

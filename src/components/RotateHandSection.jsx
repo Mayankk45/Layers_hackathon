@@ -3,9 +3,13 @@ import { useEffect, useState } from "react";
 
 const RotateHandSection = () => {
     const [angle, setAngle] = useState(0);
+    const [showCustomCursor, setShowCustomCursor] = useState(false);
+    const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 
     useEffect(() => {
         const handleMouseMove = (e) => {
+            setMousePos({ x: e.clientX, y: e.clientY });
+
             const circle = document.querySelector(".circle");
             const rect = circle.getBoundingClientRect();
 
@@ -30,7 +34,25 @@ const RotateHandSection = () => {
             data-scroll-speed="-.7"
             className="rotateHand_Section"
         >
-            <div className="rotateHand_bg">
+            .cursir
+            <div
+                className="rotateHand_bg"
+                onMouseEnter={() => setShowCustomCursor(true)}
+                onMouseLeave={() => setShowCustomCursor(false)}
+            >
+                {showCustomCursor && (
+                    <div
+                        className="setShowCustomCursor"
+                        style={{
+                            top: `${mousePos.y}px`,
+                            left: `${mousePos.x}px`,
+                            transform: "translate(-50%, -50%)",
+                        }}
+                    >
+                        Layer
+                    </div>
+                )}
+
                 <div className="rotateHand_img">
                     <img
                         src="/watchHandSectionAsset/watchRotateHand.jpg"
