@@ -34,7 +34,6 @@ const RotateHandSection = () => {
             data-scroll-speed="-.7"
             className="rotateHand_Section"
         >
-            .cursir
             <div
                 className="rotateHand_bg"
                 onMouseEnter={() => setShowCustomCursor(true)}
